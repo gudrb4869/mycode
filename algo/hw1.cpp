@@ -20,7 +20,7 @@ void post_order(int start){
 }
 
 int main(){
-    ifstream fin("C:\\Users\\user\\Desktop\\C++WorkSpace\\algo\\input.txt");
+    ifstream fin("input.txt");
     if(!fin){
         cerr <<  "File can't open.\n";
         return 0;

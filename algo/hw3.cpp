@@ -1,6 +1,8 @@
 #include <iostream>
+#include <iomanip>
 #include <fstream>
 #include <algorithm>
+#include <cstring>
 using namespace std;
 
 int m, n;
@@ -19,8 +21,8 @@ void opt(int m, int n){
             M[i][j] = min(min(M[i-1][j-1]+penalty, M[i-1][j]+3), M[i][j-1]+3);
 
             if(M[i][j] == M[i-1][j-1]+penalty) P[i][j] = 1;
-            else if(M[i][j] == M[i-1][j]+3) P[i][j] = 2;
-            else if(M[i][j] == M[i][j-1]+3) P[i][j] = 3;
+            if(M[i][j] == M[i-1][j]+3) P[i][j] = 2;
+            if(M[i][j] == M[i][j-1]+3) P[i][j] = 3;
         }
     }
 }
@@ -57,7 +59,7 @@ void align(int m, int n){
 }
 
 int main(){
-    ifstream fin("C:\\Users\\user\\Desktop\\C++WorkSpace\\algo\\input.txt");
+    ifstream fin("input.txt");
     if(!fin){
         cerr << "File can't open.\n";
         return 0;
@@ -78,11 +80,24 @@ int main(){
         align(m,n);
         for(int i=0; i<=m; i++){
             for(int j=0; j<=n; j++){
-                cout << M[i][j] << ' ';
+                cout << right << setw(3) << M[i][j] << ' ';
             }
             cout << '\n';
         }
         cout << '\n';
+        for(int i=1; i<=m; i++){
+            for(int j=1; j<=n; j++){
+                cout << right << setw(3) << P[i][j] << ' ';
+            }
+            cout << '\n';
+        }
+        cout << '\n';
+        memset(M,0,sizeof(M));
+        memset(P,0,sizeof(P));
+        memset(x,0,sizeof(x));
+        memset(y,0,sizeof(y));
+        memset(result_x,0,sizeof(result_x));
+        memset(result_y,0,sizeof(result_y));
     }
     fin.close();
     return 0;

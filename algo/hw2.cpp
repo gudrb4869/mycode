@@ -19,7 +19,7 @@ char av[] = "average";
 
 void merge(int arr[], int l, int m, int r){
     int i = l, j = m + 1, k = l;
-    int *brr=new int [r + 1];
+    int *brr = new int [r + 1];
     while(i <= m && j <= r){
         if(arr[i] < arr[j]){
             brr[k++] = arr[i++];
@@ -52,12 +52,13 @@ void mergesort(int arr[], int l, int r){
 }
 
 int partition(int arr[], int l, int r){
-    int i = l + 1, j = r, x = arr[l];
-    while(true){
-        while(arr[i] <= x && i < r) i++;
-        while(arr[j] > x && j > l) j--;
-        if(i < j) swap(arr[i], arr[j]);
-        else break;
+    int i= l + 1, j = l, pivot = arr[l];
+    while(i <= r){
+        if(arr[i] < pivot){
+            j++;
+            swap(arr[i], arr[j]);
+        }
+        i++;
     }
     swap(arr[l], arr[j]);
     return j;
@@ -114,7 +115,7 @@ int main(){
         
         for(int j = 0; j < 3; j++){
             for(int k = 0; k < input2[i]; k++){
-                int val = (rand() << 15 | rand()) % 10000000;
+                int val = (rand() << 15 | rand());
                 m[k] = q[k] = val;
             }
 
